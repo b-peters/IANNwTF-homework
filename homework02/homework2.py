@@ -32,15 +32,17 @@ class Layer:
         """
         A method that takes one unit as an input and returns each unit's activation as an output.
         """
-        output = ((input @ self.weight_matrix) + self.bias_vector)
+        self.layer_preactivation = ((input @ self.weight_matrix) + self.bias_vector)
+        input = self.layer_input
         # applies ReLU to the preactivation
-        np.place(output, output <= 0, 0)
-        return np.reshape(output, -1)
+        self.layer_activation = np.reshape(np.where(self.layer_preactivation <= 0, 0, self.layer_preactivation), -1)
+        return self.layer_activation
 
 # Creates an instance of an example object of the Layer class
-Layer1 = Layer(n_units = 10, input_units = 100)
+layer1 = Layer(n_units = 10, input_units = 100)
 
-print(Layer.forward_step(Layer1, x))
+# Testing if the function works roughly as it should
+print(Layer.forward_step(layer1, x))
 
    # def backward_step(self):
 
