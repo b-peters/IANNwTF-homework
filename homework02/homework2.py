@@ -30,10 +30,10 @@ class Layer:
     
     def forward_step(self, input):
         """
-        A method that takes one unit as an input and returns each unit's activation as an output.
+        A method that takes a layer as an input and returns each unit's activation as an output.
         """
         self.layer_preactivation = ((input @ self.weight_matrix) + self.bias_vector)
-        input = self.layer_input
+        self.layer_input = input
         # applies ReLU to the preactivation
         self.layer_activation = np.reshape(np.where(self.layer_preactivation <= 0, 0, self.layer_preactivation), -1)
         return self.layer_activation
@@ -42,7 +42,28 @@ class Layer:
 layer1 = Layer(n_units = 10, input_units = 100)
 
 # Testing if the function works roughly as it should
-print(Layer.forward_step(layer1, x))
+layer1.forward_step(x)
 
-   # def backward_step(self):
+print(layer1.__dict__)
+
+layer2 = Layer(n_units = 5, input_units = 10)
+
+layer2.forward_step(layer1.layer_activation)
+
+print(layer2.__dict__)
+
+
+#    def backward_step(self, input):
+#        """
+#        A method that backpropagates the neural network.
+#        """
+#        if self.n_units == 1:
+#            err_signal = 
+ #           gradient = np.transpose(input) (self.layer_preactivation,  )
+#            bias = 
+#        else:
+            ####
+
+#class MLP:
+#    """X......"""
 
