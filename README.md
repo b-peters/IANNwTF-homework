@@ -1,2 +1,2 @@
 # Homework: Implementing ANNs with TensorFlow
-This is the homework repository of group 42 for the course "Implementing ANNs with TensorFlow".
+This is my homework repository for the course "Implementing ANNs with TensorFlow" (Winter 2023/24).
